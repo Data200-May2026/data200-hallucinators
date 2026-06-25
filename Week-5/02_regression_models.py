@@ -71,10 +71,7 @@ def multiple_linear_regression(df):
         (df['dimension_type'].isin(['SEX', 'WEALTHQUINTILE']))
     ].copy()
 
-    # Create dummy variables
-    stunting = pd.get_dummies(stunting, columns=['dimension_name'], drop_first=True)
-
-    # Map wealth to numeric
+    # Map wealth to numeric BEFORE creating dummies
     wealth_map = {
         'Q1 (Poorest)': 1,
         'Q2': 2,
@@ -83,8 +80,11 @@ def multiple_linear_regression(df):
         'Q5 (Richest)': 5
     }
 
-    # Add numeric wealth
+    # Add numeric wealth using dimension_name
     stunting['wealth_numeric'] = stunting['dimension_name'].map(wealth_map)
+
+    # Create dummy variables (only for SEX dimension to avoid issues)
+    stunting = pd.get_dummies(stunting, columns=['dimension_name'], drop_first=True)
 
     # Filter complete cases
     reg_data = stunting.dropna(subset=['numeric_value', 'year', 'wealth_numeric'])
@@ -323,10 +323,14 @@ def anova_as_regression(df):
 
     model = sm.OLS(y, X).fit()
 
-    # ANOVA table
-    anova_table = sm.stats.anova_lm(model, typ=2)
-    print("\n--- ANOVA Table ---")
-    print(anova_table)
+    # ANOVA using scipy (since statsmodels anova_lm needs formula interface)
+    groups = [reg_data[reg_data['wealth_numeric'] == w]['numeric_value'].dropna().values
+              for w in sorted(reg_data['wealth_numeric'].unique())]
+    if len(groups) >= 2:
+        f_stat, p_val = stats.f_oneway(*groups)
+        print("\n--- ANOVA Results (Wealth Quintile) ---")
+        print(f"F-statistic: {f_stat:.4f}")
+        print(f"P-value: {p_val:.6f}")
 
     return model
 
