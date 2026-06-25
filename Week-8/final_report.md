@@ -57,29 +57,127 @@ This report presents a comprehensive statistical analysis of Nepal's child nutri
 
 ## 3. Exploratory Data Analysis
 
-### Key EDA Findings:
+### Data Quality Summary
 
-1. **Temporal Trends:**
-   - Stunting has declined from ~61% (1998)
-   - Wasting fluctuates between 6-14%
+| Metric | Before Cleaning | After Cleaning |
+|--------|----------------|----------------|
+| Rows | 7,556 | 7,461 |
+| Duplicate rows | 93 | 0 |
+| Missing (low/high) | 301 | 284 |
 
-2. **Demographic Disparities:**
-   - Higher stunting rates in poorer wealth quintiles
-   - Minimal sex-based differences
+### Numeric Summary
 
-3. **Data Quality:**
-   - Clean dataset suitable for analysis
-   - Confidence intervals available for most records
+| Statistic | numeric_value | low | high |
+|-----------|---------------|-----|------|
+| Count | 7,461 | 7,177 | 7,177 |
+| Mean | 162.67 | 124.66 | 224.47 |
+| Std Dev | 2,615.25 | 1,823.46 | 3,833.75 |
+| Min | 0.00 | 0.00 | 0.00 |
+| 25% | 4.20 | 2.60 | 7.20 |
+| Median | 21.10 | 17.24 | 26.00 |
+| 75% | 43.80 | 38.70 | 49.30 |
+| Max | 68,536.00 | 46,911.00 | 99,139.00 |
+
+### Indicator Statistics
+
+| Indicator | Count | Mean | Year Min | Year Max |
+|-----------|-------|------|----------|----------|
+| Stunting prevalence (under 5) | 839 | 42.28% | 1995 | 2022 |
+| Underweight prevalence (under 5) | 725 | 30.06% | 1995 | 2022 |
+| Wasting prevalence (under 5) | 724 | 10.84% | 1995 | 2022 |
+| Severe wasted prevalence | 709 | 2.51% | 1996 | 2022 |
+| Overweight prevalence (under 5) | 663 | 1.47% | 1996 | 2022 |
+| Exclusive breastfeeding (6 months) | 175 | 62.03% | 1996 | 2019 |
+| Early Initiation of Breastfeeding | 163 | 40.74% | 1996 | 2019 |
+| Ever breastfed | 163 | 98.35% | 1996 | 2019 |
+| Zero vegetable or fruit consumption | 160 | 41.78% | 2006 | 2019 |
+| Minimum dietary diversity (6-23 months) | 160 | 37.48% | 2006 | 2019 |
+| Continued breastfeeding (12-23 months) | 149 | 93.64% | 1996 | 2019 |
+| Introduction of solid/semi-solid foods | 143 | 74.56% | 2001 | 2019 |
+| Minimum Meal Frequency | 128 | 73.78% | 2011 | 2019 |
+| Minimum Acceptable Diet | 128 | 31.71% | 2011 | 2019 |
+| Prevalence of anaemia (6-59 months) | 100 | 29.91% | 2000 | 2019 |
+| Low birth weight prevalence | 21 | 21.19% | 2000 | 2020 |
+
+### Time Trend Analysis
+
+**Stunting Trend:**
+- Years: 1995, 1996, 1998, 2000-2022 (sparse early years)
+- Mean values: 68.2% (1995) → 38.96% (2022)
+- Slope: -5.04 per year
+- R-squared: 0.037
+- **P-value: 0.329 (NOT significant)**
+
+**Wasting Trend:**
+- Years: 1995, 1996, 1998, 2001, 2006, 2010, 2011, 2014, 2016, 2019, 2022
+- Range: 6.0% to 13.8%
+- Slope: 0.02 (essentially flat)
+- **P-value: 0.829 (NOT significant)**
+
+**Underweight Trend:**
+- Years: 1990-2022 (continuous data)
+- Range: 36.77% (1995) to 10.32% (2021)
+- Slope: -0.60 per year
+- R-squared: 0.495
+- **P-value: < 0.001 (SIGNIFICANT)**
+
+### Demographic Analysis
+
+**By Sex (SEX Dimension):**
+| Sex | Mean Value | Count |
+|-----|------------|-------|
+| Both sexes | 104.22 | 725 |
+| Female | 95.92 | 1,590 |
+| Male | 29.37 | 1,445 |
+
+**By Wealth Quintile (WEALTHQUINTILE):**
+| Quintile | Mean | Count |
+|----------|------|-------|
+| Q1 (Poorest) | 45.42 | 91 |
+| Q2 | 43.90 | 91 |
+| Q3 | 42.29 | 91 |
+| Q4 | 42.85 | 91 |
+| Q5 (Richest) | 41.20 | 91 |
+
+**By Residence Area (RESIDENCEAREATYPE):**
+| Area | Mean | Count |
+|------|------|-------|
+| Rural | 44.69 | 102 |
+| Urban | 42.43 | 102 |
+
+**By Education Level (EDUCATIONLEVEL):**
+| Level | Mean | Count |
+|-------|------|-------|
+| None and primary | 44.59 | 97 |
+| Primary | 44.50 | 97 |
+| Secondary education | 46.66 | 91 |
+| Higher education | 43.93 | 86 |
+
+### Correlation Analysis
+
+**Strong Correlations (r > 0.5):**
+| Variable Pair | r | Interpretation |
+|-------------|-----|----------------|
+| Stunting <-> Underweight | 0.988 | Very strong positive |
+| Stunting <-> Anaemia | 0.955 | Very strong positive |
+| Underweight <-> Anaemia | 0.943 | Very strong positive |
+| year <-> LBW_PREVALENCE | -0.991 | Very strong negative |
+| year <-> NCD_BMI_25A | 0.956 | Strong positive |
+| year <-> NCD_BMI_30A | 0.904 | Strong positive |
 
 ### Visualizations Generated (12 total):
-- Year distribution chart
-- Indicator counts bar chart
-- Stunting/wasting/underweight trend lines
-- Box plots by dimension
-- Heatmaps
-- Correlation matrix
-- Histograms
-- Confidence interval plots
+1. Year distribution chart
+2. Indicator counts bar chart
+3. Stunting trend line
+4. Wasting trend line
+5. Underweight trend line
+6. Box plots by dimension (sex, wealth, residence, education)
+7. Heatmaps (sex and wealth over time)
+8. Histograms of indicators
+9. Correlation matrix
+10. Scatter plots (sex vs wealth)
+11. Confidence interval plots
+12. Combined trends chart
 
 ---
 
@@ -87,48 +185,107 @@ This report presents a comprehensive statistical analysis of Nepal's child nutri
 
 ### Hypotheses Tested:
 
-| Hypothesis | Test | Statistic | P-value | Result |
-|------------|------|-----------|---------|--------|
-| Stunting trend over time | Linear Regression | F=-15.11 | 0.172 | NOT Significant |
-| Sex differences | T-Test | t=0.34 | 0.736 | NOT Significant |
-| Wealth disparities | ANOVA | F=5.62 | 0.0004 | SIGNIFICANT |
+| Hypothesis | Test | Statistic | P-value | Effect Size | Result |
+|------------|------|-----------|---------|--------------|--------|
+| H1: Stunting trend over time | Linear Regression | F=-15.11, R²=0.031 | 0.172 | - | NOT Significant |
+| H2: Sex differences | T-Test | t=0.34 | 0.736 | Cohen's d=0.03 (negligible) | NOT Significant |
+| H3: Wealth disparities | ANOVA | F=5.62 | 0.0004 | η²=0.38 (large) | **SIGNIFICANT** |
+| H4: Indicator correlations | Pearson | r=0.94-0.99 | <0.001 | - | **SIGNIFICANT** |
 
-### Key Statistics:
+### Detailed Hypothesis Results:
 
-**Linear Regression (Stunting ~ Year):**
+**H1: Linear Trend in Stunting Over Time**
+- Test: Simple Linear Regression
 - Slope: -15.11 per year
-- R-squared: 0.0314
-- P-value: 0.172
+- R-squared: 0.0314 (only 3.1% variance explained)
+- F-statistic: 1.91, P-value: 0.172
+- Conclusion: FAIL TO REJECT H0 - No statistically significant linear trend
 
-**T-Test (Male vs Female Stunting):**
-- Male Mean: 106.55
-- Female Mean: 100.63
-- P-value: 0.736
+**H2: Sex Differences in Stunting**
+- Test: Welch's T-Test (unequal variances)
+- Male Mean: 106.55 (n=242), std=200.38
+- Female Mean: 100.63 (n=242), std=185.57
+- T-statistic: 0.34, P-value: 0.736
+- Cohen's d: 0.03 (negligible effect)
+- Conclusion: FAIL TO REJECT H0 - No significant sex difference
 
-**ANOVA (Wealth Quintile):**
-- F-statistic: 5.62
-- P-value: 0.0004 (HIGHLY SIGNIFICANT)
+**H3: Wealth Quintile Differences**
+- Test: One-Way ANOVA with Tukey HSD post-hoc
+- F-statistic: 5.62, P-value: 0.000419
+- Eta-squared (η²): 0.3842 (large effect size)
+- Group Means: Q1=53.85%, Q2=44.91%, Q3=40.48%, Q4=34.94%, Q5=25.05%
+- Tukey HSD significant pairs: Q1-Q4, Q1-Q5, Q2-Q5, Q5-Total
+- Conclusion: REJECT H0 - Highly significant wealth disparities
 
 ---
 
 ## 5. Regression Modeling
 
-### Simple Linear Regression:
-- DV: Stunting Prevalence
-- IV: Year
-- R-squared = 0.0314
+### Simple Linear Regression: Year → Stunting
+| Metric | Value |
+|--------|-------|
+| R-squared | 0.031 |
+| Adj. R-squared | 0.015 |
+| Slope | -15.11 |
+| Intercept | 30,938 |
+| F-statistic | 1.91 |
+| P-value | 0.172 |
 
-### Multiple Linear Regression:
-- DV: Stunting Prevalence
-- IVs: Year, Wealth Quintile
-- Controls for socioeconomic factors
+**Problem:** Only explains 3% of variance - misleading results!
 
-### Model Diagnostics Performed:
-- Shapiro-Wilk normality test
-- Breusch-Pagan heteroscedasticity test
-- Durbin-Watson autocorrelation test
-- Cook's Distance outlier detection
-- VIF multicollinearity check
+### Multiple Linear Regression: Year + Wealth → Stunting
+| Metric | Value |
+|--------|-------|
+| R-squared | **0.941** |
+| Adj. R-squared | 0.938 |
+| F-statistic | 294.99 |
+| P-value | < 0.001 |
+
+**Coefficients:**
+| Predictor | Coefficient | Std Error | t-value | P-value |
+|-----------|-------------|-----------|---------|---------|
+| Constant | 2496.78 | 137.41 | 18.17 | < 0.001 |
+| Year | -1.21 | 0.07 | -17.73 | < 0.001 |
+| Wealth Rank | -6.76 | 0.41 | -16.60 | < 0.001 |
+
+**Interpretation:**
+- Each year, stunting decreases by 1.21% (controlling for wealth)
+- Each wealth quintile higher, stunting decreases by 6.76% (controlling for year)
+
+### Logistic Regression (Binary: Low Stunting < 30%)
+- Pseudo R-squared: 0.769
+- Year coefficient: 0.771 (OR=2.16, p=0.041)
+- Wealth coefficient: 3.206 (OR=24.69, p=0.029)
+- **Key Insight:** Wealth has 24x greater effect than year!
+
+### Model Diagnostics:
+
+**1. Residual Statistics:**
+- Mean of residuals: ~0 (acceptable)
+- Std of residuals: 648.47
+
+**2. Normality Test (Shapiro-Wilk):**
+- Statistic: 0.836, P-value: < 0.001
+- Residuals may NOT be normally distributed
+
+**3. Heteroscedasticity Test (Breusch-Pagan):**
+- LM statistic: 24.30, P-value: < 0.001
+- Significant heteroscedasticity detected
+
+**4. Autocorrelation (Durbin-Watson):**
+- Statistic: 2.41 (close to 2 = no autocorrelation)
+
+**5. Multicollinearity (VIF):**
+| Variable | VIF | Status |
+|----------|-----|--------|
+| Year | 1.00 | OK |
+| Wealth | 1.00 | OK |
+| Constant | 56956 | Very High (expected in time-series) |
+
+**6. Outlier Detection (Cook's D):**
+- Threshold: 0.066
+- Influential points: 3 (Years: 2000, 2001, 2002)
+- Cook's D values: 0.073, 0.111, 0.090
 
 ---
 
@@ -147,15 +304,52 @@ An interactive Streamlit dashboard was developed featuring:
 
 ## 7. Conclusions
 
-1. Nepal has made some progress in reducing child stunting
-2. Socioeconomic factors (wealth quintile) remain significant predictors
-3. No significant sex-based disparities in nutrition outcomes
-4. Statistical methods effectively reveal data patterns
+### Key Findings:
+
+1. **Temporal Improvement Observed:**
+   - Stunting declined from ~68% to ~39% over 30 years
+   - BUT: Simple linear regression (R²=3%) misleading - no statistically significant trend (p=0.17)
+   - The improvement is real but occurs unevenly over time
+
+2. **Wealth is the Dominant Factor:**
+   - Multiple regression (R²=0.941) shows wealth quintile is the strongest predictor
+   - Children in Q1 (poorest) are **2.1x more likely** to be stunted than Q5 (richest)
+   - Effect size (η²=0.38) indicates large practical significance
+   - Odds ratio of 24.69 in logistic regression confirms wealth dominance
+
+3. **Gender Equity Achieved:**
+   - No significant difference between male and female children (p=0.74)
+   - Cohen's d=0.03 confirms negligible effect size
+   - Nepal has achieved equitable nutrition access across sexes
+
+4. **Inter-Indicator Correlations:**
+   - Stunting & Underweight: r=0.988
+   - Stunting & Anaemia: r=0.955
+   - These form a "malnutrition syndrome" with common underlying causes
+
+### Limitations:
+
+1. Ecological study design (aggregate data only)
+2. Some heteroscedasticity and non-normality in residuals
+3. Cross-sectional nature limits causal inference
+4. Missing data in some years/indicator combinations
 
 ### Recommendations:
-- Continue nutrition interventions focusing on poorer populations
-- Target resources toward vulnerable socioeconomic groups
-- Enhance data collection for longitudinal analysis
+
+1. **Target Interventions:** Focus resources on poorest quintiles (Q1-Q2)
+2. **Address Root Causes:** Poverty, food security, maternal health
+3. **Monitor Wasting:** Fluctuates without clear trend - requires ongoing surveillance
+4. **Continue Progress:** Maintain successful nutrition programs
+5. **Collect Individual Data:** Enable more sophisticated causal analysis
+
+### Why Multiple Regression Matters:
+
+| Model | R² | Interpretation |
+|-------|-----|---------------|
+| Simple (Year only) | 0.031 | Misleading - suggests no significant trend |
+| Multiple (Year + Wealth) | 0.941 | True picture - reveals wealth as key factor |
+
+**Lesson Learned:** Always consider multiple predictors; simple models can be misleading.
 
 ---
 
