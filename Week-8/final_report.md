@@ -217,6 +217,47 @@ This report presents a comprehensive statistical analysis of Nepal's child nutri
 - Tukey HSD significant pairs: Q1-Q4, Q1-Q5, Q2-Q5, Q5-Total
 - Conclusion: REJECT H0 - Highly significant wealth disparities
 
+### ANOVA Detailed Analysis
+
+**Research Question:** Do stunting prevalence rates differ significantly across wealth quintiles?
+
+**Hypotheses:**
+- H0: μQ1 = μQ2 = μQ3 = μQ4 = μQ5 (no difference between quintiles)
+- H1: At least one quintile mean is significantly different
+
+**Group Statistics for ANOVA:**
+| Group | n | Mean Stunting | Std Dev |
+|-------|---|---------------|---------|
+| Q1 (Poorest) | 8 | 53.85% | - |
+| Q2 | 8 | 44.91% | - |
+| Q3 | 8 | 40.48% | - |
+| Q4 | 8 | 34.94% | - |
+| Q5 (Richest) | 8 | 25.05% | - |
+| Total | 11 | 45.54% | - |
+
+**ANOVA Summary Table:**
+| Source | SS | df | MS | F | P-value |
+|--------|----|----|----|---|---------|
+| Between Groups | - | 5 | - | **5.62** | **0.000419** |
+| Within Groups | - | 34 | - | - | - |
+| Total | - | 39 | - | - | - |
+
+**Effect Size:**
+- Eta-squared (η²) = 0.3842
+- Interpretation: **LARGE EFFECT** - Wealth quintile explains 38.4% of the variance in stunting prevalence
+
+**Tukey HSD Post-Hoc Test Results:**
+| Comparison | Mean Diff | P-adj | Significant? |
+|------------|-----------|-------|--------------|
+| Q1 (Poorest) vs Q4 | -18.91 | 0.031 | **Yes*** |
+| Q1 (Poorest) vs Q5 (Richest) | -28.80 | 0.0002 | **Yes**** |
+| Q2 vs Q5 (Richest) | -19.86 | 0.020 | **Yes*** |
+| Q5 (Richest) vs Total | 20.49 | 0.007 | **Yes**** |
+
+**Key Finding:** Children in the poorest quintile (Q1) are **2.15x more likely** to be stunted than children in the richest quintile (Q5).
+
+**Practical Significance:** The large effect size (η²=0.38) indicates that socioeconomic status is not just statistically significant but practically meaningful in explaining child nutrition outcomes.
+
 ---
 
 ## 5. Regression Modeling

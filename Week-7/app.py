@@ -346,11 +346,28 @@ if app_mode == "Presentation Slides":
         st.markdown("<table><tr><th>Statistic</th><th>Value</th><th>Interpretation</th></tr><tr><td>Male Mean</td><td>106.55</td><td>n=242</td></tr><tr><td>Female Mean</td><td>100.63</td><td>n=242</td></tr><tr><td>T-statistic</td><td>0.34</td><td>-</td></tr><tr><td>P-value</td><td>0.736</td><td>Not significant</td></tr><tr><td>Cohen's d</td><td>0.03</td><td>Negligible effect</td></tr></table>", unsafe_allow_html=True)
         st.markdown("<div class='success-box'><p><strong>Result:</strong> FAIL TO REJECT H0 - No significant sex difference. <strong>Insight:</strong> Nepal has achieved gender equity in child nutrition! Effect size (Cohen's d = 0.03) confirms negligible difference.</p></div>", unsafe_allow_html=True)
         st.markdown("<hr>", unsafe_allow_html=True)
-        st.markdown("<h3>H3: Wealth Quintile Differences</h3>", unsafe_allow_html=True)
-        st.markdown("<p><strong>Test:</strong> One-Way ANOVA with Tukey HSD post-hoc</p>", unsafe_allow_html=True)
-        st.markdown("<table><tr><th>Wealth Group</th><th>Mean Stunting</th><th>n</th></tr><tr><td>Q1 (Poorest)</td><td>53.85%</td><td>8</td></tr><tr><td>Q2</td><td>44.91%</td><td>8</td></tr><tr><td>Q3</td><td>40.48%</td><td>8</td></tr><tr><td>Q4</td><td>34.94%</td><td>8</td></tr><tr><td>Q5 (Richest)</td><td>25.05%</td><td>8</td></tr><tr><td>F-statistic</td><td>5.62</td><td>-</td></tr><tr><td>P-value</td><td>0.0004</td><td>Highly Significant</td></tr><tr><td>Eta-squared (η²)</td><td>0.38</td><td>Large effect</td></tr></table>", unsafe_allow_html=True)
-        st.markdown("<p><strong>Tukey HSD Significant Pairings:</strong> Q1-Q4, Q1-Q5, Q2-Q5, Q5-Total</p>", unsafe_allow_html=True)
+        st.markdown("<h3>H3: Wealth Quintile Differences - One-Way ANOVA</h3>", unsafe_allow_html=True)
+        st.markdown("<p><strong>Hypotheses:</strong> H0: No difference across wealth quintiles | H1: At least one quintile differs</p>", unsafe_allow_html=True)
+
+        st.markdown("<h4>ANOVA Results</h4>", unsafe_allow_html=True)
+        st.markdown("<table><tr><th>Group</th><th>n</th><th>Mean Stunting</th></tr><tr><td>Q1 (Poorest)</td><td>8</td><td>53.85%</td></tr><tr><td>Q2</td><td>8</td><td>44.91%</td></tr><tr><td>Q3</td><td>8</td><td>40.48%</td></tr><tr><td>Q4</td><td>8</td><td>34.94%</td></tr><tr><td>Q5 (Richest)</td><td>8</td><td>25.05%</td></tr><tr><td>Total</td><td>11</td><td>45.54%</td></tr></table>", unsafe_allow_html=True)
+
+        st.markdown("<h4>ANOVA Summary Table</h4>", unsafe_allow_html=True)
+        st.markdown("<table><tr><th>Source</th><th>SS</th><th>df</th><th>MS</th><th>F</th><th>P-value</th></tr><tr><td>Between Groups</td><td>-</td><td>5</td><td>-</td><td>5.62</td><td>0.0004</td></tr><tr><td>Within Groups</td><td>-</td><td>34</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Total</td><td>-</td><td>39</td><td>-</td><td>-</td><td>-</td></tr></table>", unsafe_allow_html=True)
+
+        st.markdown("<h4>Effect Size</h4>", unsafe_allow_html=True)
+        st.markdown("<table><tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr><tr><td>Eta-squared (η²)</td><td>0.3842</td><td>Large effect (38.4% variance explained)</td></tr><tr><td>Cohen's f</td><td>0.79</td><td>Large effect</td></tr></table>", unsafe_allow_html=True)
+
+        st.markdown("<h4>Tukey HSD Post-Hoc Test (Significant Pairings)</h4>", unsafe_allow_html=True)
+        st.markdown("<table><tr><th>Comparison</th><th>Mean Diff</th><th>P-adj</th><th>Significant?</th></tr><tr><td>Q1 (Poorest) vs Q4</td><td>-18.91</td><td>0.031</td><td>YES *</td></tr><tr><td>Q1 (Poorest) vs Q5 (Richest)</td><td>-28.80</td><td>0.0002</td><td>YES ***</td></tr><tr><td>Q2 vs Q5 (Richest)</td><td>-19.86</td><td>0.020</td><td>YES *</td></tr><tr><td>Q5 (Richest) vs Total</td><td>20.49</td><td>0.007</td><td>YES **</td></tr></table>", unsafe_allow_html=True)
+
         st.markdown("<div class='success-box'><p><strong>Result:</strong> REJECT H0 - Highly significant wealth disparities (p less than 0.001). <strong>Critical Insight:</strong> Children in poorest quintile (Q1) are 2.1x more likely to be stunted than richest (Q5). Effect size η²=0.38 indicates large practical significance.</p></div>", unsafe_allow_html=True)
+
+        st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown("<h3>H4: Correlation Analysis</h3>", unsafe_allow_html=True)
+        st.markdown("<p><strong>Test:</strong> Pearson Correlation | <strong>H0:</strong> No correlation | <strong>H1:</strong> Significant correlation</p>", unsafe_allow_html=True)
+        st.markdown("<table><tr><th>Indicator Pair</th><th>r</th><th>P-value</th></tr><tr><td>Stunting <-> Underweight</td><td>0.988</td><td>less than 0.0001</td></tr><tr><td>Stunting <-> Anaemia</td><td>0.955</td><td>less than 0.0001</td></tr><tr><td>Underweight <-> Anaemia</td><td>0.943</td><td>less than 0.0001</td></tr></table>", unsafe_allow_html=True)
+        st.markdown("<div class='info-box'><p><strong>Result:</strong> REJECT H0 - All correlations are highly significant (p less than 0.001). These form a \"malnutrition syndrome\".</p></div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
     elif current_slide == "10. Regression":

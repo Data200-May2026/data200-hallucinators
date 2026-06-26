@@ -209,7 +209,60 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 9: Hypothesis Testing Results
+## Slide 9: Hypothesis Testing - ANOVA (H3)
+
+### One-Way ANOVA: Wealth Quintile Differences
+
+**Research Question:** Do stunting prevalence rates differ across wealth quintiles?
+
+**Hypotheses:**
+- H0: μQ1 = μQ2 = μQ3 = μQ4 = μQ5 (no difference)
+- H1: At least one quintile mean is different
+
+### Group Statistics
+| Group | n | Mean Stunting | Std Dev |
+|-------|---|---------------|---------|
+| Q1 (Poorest) | 8 | 53.85% | - |
+| Q2 | 8 | 44.91% | - |
+| Q3 | 8 | 40.48% | - |
+| Q4 | 8 | 34.94% | - |
+| Q5 (Richest) | 8 | 25.05% | - |
+| Total | 11 | 45.54% | - |
+
+### ANOVA Summary Table
+| Source | SS | df | MS | F | P-value |
+|--------|----|----|----|---|---------|
+| Between Groups | - | 5 | - | **5.62** | **0.0004** |
+| Within Groups | - | 34 | - | - | - |
+| Total | - | 39 | - | - | - |
+
+### Effect Size
+| Metric | Value | Interpretation |
+|--------|-------|----------------|
+| Eta-squared (η²) | **0.384** | **Large effect** - 38.4% of variance explained |
+| Cohen's f | 0.79 | Large effect |
+
+### Tukey HSD Post-Hoc Test Results
+| Comparison | Mean Diff | P-adj | Significant? |
+|------------|-----------|-------|--------------|
+| Q1 (Poorest) vs Q2 | -8.94 | 0.668 | No |
+| Q1 (Poorest) vs Q3 | -13.38 | 0.240 | No |
+| Q1 (Poorest) vs Q4 | -18.91 | 0.031 | **Yes*** |
+| Q1 (Poorest) vs Q5 (Richest) | -28.80 | 0.0002 | **Yes*** |
+| Q2 vs Q5 (Richest) | -19.86 | 0.020 | **Yes*** |
+| Q5 (Richest) vs Total | 20.49 | 0.007 | **Yes**** |
+
+### Conclusion
+**REJECT H0** at α=0.05
+
+- There is a statistically significant difference in stunting prevalence across wealth quintiles
+- **Practical Significance:** η²=0.38 indicates a LARGE effect - wealth explains 38.4% of variance
+- Children in the poorest quintile (Q1) are **2.15x more likely** to be stunted than the richest (Q5)
+- **Key Insight:** Poverty is the primary driver of child malnutrition in Nepal
+
+---
+
+## Slide 10: Hypothesis Testing Results Summary
 
 | Hypothesis | Test | P-value | Result | Effect Size |
 |-----------|------|---------|--------|-------------|
@@ -222,30 +275,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 7: Hypothesis Test Details
-
-### H1: Linear Trend in Stunting
-- **Test:** Simple Linear Regression
-- **Slope:** -15.11 (decrease per year)
-- **R-squared:** 0.031 (3.1% variance explained)
-- **F-statistic:** 1.91, p=0.172
-- **Conclusion:** No significant linear trend
-
-### H2: Sex Differences
-- **Test:** Welch's T-Test
-- **Male mean:** 106.55, **Female mean:** 100.63
-- **T-statistic:** 0.34, **Cohen's d:** 0.03
-- **Conclusion:** No significant difference - gender equity achieved
-
-### H3: Wealth Quintile Differences
-- **Test:** One-Way ANOVA with Tukey HSD
-- **F-statistic:** 5.62, **η²:** 0.38 (large effect)
-- **Q1 (Poorest):** 53.85% vs **Q5 (Richest):** 25.05%
-- **Conclusion:** Significant disparities - poverty drives malnutrition
-
----
-
-## Slide 8: Regression Modeling
+## Slide 11: Regression Modeling
 
 ### Simple Linear Regression: Year → Stunting
 | Metric | Value |
@@ -273,7 +303,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 9: Model Diagnostics
+## Slide 12: Model Diagnostics
 
 ### Residual Analysis
 | Test | Statistic | P-value | Result |
@@ -299,7 +329,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 12: Key Findings
+## Slide 13: Key Findings
 
 ### 1. Temporal Improvement Observed
 - Stunting declined from 68% (1995) to 39% (2022) over 30 years
@@ -324,7 +354,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 13: Statistical Conclusions
+## Slide 14: Statistical Conclusions
 
 ### What We Tested
 1. **Linear Trend:** Does stunting decrease over time?
@@ -346,7 +376,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 14: Python Application
+## Slide 15: Python Application
 
 **Interactive Dashboard Features:**
 - Overview page with key metrics
@@ -365,7 +395,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 15: Limitations
+## Slide 16: Limitations
 
 1. **Ecological Study Design:** Aggregate data only (no individual-level)
 2. **Missing Data:** Some years/indicators have incomplete coverage
@@ -375,7 +405,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 16: Conclusions
+## Slide 17: Conclusions
 
 ### Nepal Has Made Progress
 - Child stunting declined significantly over 30 years
@@ -393,7 +423,7 @@ Analyze Nepal's child nutrition indicators to identify trends and patterns that 
 
 ---
 
-## Slide 17: Thank You
+## Slide 18: Thank You
 
 **Questions?**
 
